@@ -1,0 +1,20 @@
+.usersList{
+    margin-left: 70px;
+    width: 90%;
+}
+
+.userImage{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.deleteUser{
+    cursor: pointer;
+    color: brown;
+}
+
+.editUserRoles{
+    color: green;
+    cursor: pointer;
+}

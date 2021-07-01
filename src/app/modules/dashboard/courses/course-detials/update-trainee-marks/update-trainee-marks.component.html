@@ -1,0 +1,33 @@
+<div class="container" *hasPermission="[permission.UpdateTraineeMarks]">
+    <div class="row marks-dialog">
+        <h2 mat-dialog-title>Update trainee marks</h2>
+        <mat-dialog-content class="mat-typography">
+            <form [formGroup]="marksForm">
+                <div class="row">
+                    <mat-form-field class="mark-input">
+                        <mat-label>First Mark</mat-label>
+                        <input type="text" matInput formControlName="firstMark">
+                    </mat-form-field>
+                    <mat-form-field class="mark-input">
+                        <mat-label>Second Mark</mat-label>
+                        <input type="text" matInput formControlName="secondMark">
+                    </mat-form-field>
+                    <mat-form-field class="mark-input">
+                        <mat-label>Third Mark</mat-label>
+                        <input type="text" matInput formControlName="thirdMark">
+                    </mat-form-field>
+                    <mat-form-field class="mark-input">
+                        <mat-label>Final Mark</mat-label>
+                        <input type="text" matInput formControlName="finalMark">
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button [mat-dialog-close]="true" (click)="saveItem()" cdkFocusInitial>Save</button>
+        </mat-dialog-actions>  
+    </div>
+</div>
+
+

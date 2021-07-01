@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card-div col-md-7 text-center">
+    <div class="card mat-elevation-z8">
+      <div class="card-body">
+          <h1 class="card-title">Login</h1>
+          <form [formGroup]="loginForm" (ngSubmit)= "onSubmit()">
+            <mat-form-field class="col-md-10 {{currentLang}}" appearance="standard">
+                <mat-label>UserName</mat-label>
+                <input matInput type="text" formControlName="userName">
+                <mat-error *ngIf="loginForm.controls.userName.hasError('required')">Please enter your user name</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-10 {{currentLang}}" appearance="standard">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+                <mat-error *ngIf="loginForm.controls.password.hasError('required')">Please enter your password</mat-error>
+            </mat-form-field>
+            <button class="btn btn-rounded btn-outline-primary mat-elevation-z8 submit col-md-3" type="submit" color="danger" >Login</button>
+        </form>
+        <h3 class="forgot-pass" ><a href="http://localhost:62755/public/email" class="text-primary">Forgot password !</a></h3>
+      </div>
+     </div>    
+  </div>
+</div>     
+
+
+

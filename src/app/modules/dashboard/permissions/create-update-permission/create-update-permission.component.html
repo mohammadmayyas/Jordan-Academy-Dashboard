@@ -1,0 +1,25 @@
+<div *hasPermission="[permission.AddPermission, permission.EditPermission]">
+    <h2 mat-dialog-title>Create/Update Permission</h2>
+    <mat-dialog-content class="mat-typography">
+        <div class="container">
+            <form [formGroup]="permissionForm">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Permission</mat-label>
+                    <input type="text" matInput formControlName="permissionName" placeholder="Ex. Admin">
+                    <mat-error *ngIf="permissionForm.controls.permissionName.hasError('required')">
+                        Permission is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="permissionForm.controls.permissionName.hasError('minlength')"> </mat-error>
+                    <mat-error *ngIf="permissionForm.controls.permissionName.hasError('maxlength')"> </mat-error>
+                </mat-form-field>
+            </form>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" (click)="saveItem()" cdkFocusInitial
+            [disabled]="permissionForm.invalid">Save</button>
+    </mat-dialog-actions>
+
+</div>
+

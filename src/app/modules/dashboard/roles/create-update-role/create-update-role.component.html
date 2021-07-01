@@ -1,0 +1,24 @@
+<div *hasPermission="[permission.AddRole, permission.EditRole]">
+    <h1 mat-dialog-title>Create/Update Role</h1>
+    <mat-dialog-content class="mat-typography">
+        <div class="container">
+            <form [formGroup]="roleForm">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Name</mat-label>
+                    <input type="text" matInput formControlName="roleName" placeholder="Ex. Admin">
+                    <mat-error *ngIf="roleForm.controls.roleName.hasError('required')">
+                        Role is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="roleForm.controls.roleName.hasError('minlength')"> </mat-error>
+                    <mat-error *ngIf="roleForm.controls.roleName.hasError('maxlength')"> </mat-error>
+                </mat-form-field>
+            </form>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" (click)="saveItem()" cdkFocusInitial
+            [disabled]="roleForm.invalid">Save</button>
+    </mat-dialog-actions>
+</div>
+

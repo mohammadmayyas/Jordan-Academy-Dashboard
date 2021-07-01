@@ -1,0 +1,74 @@
+<div class="container" *hasPermission="[permission.AddCourse, permission.EditCourse]">
+    <div class="row course-dialog">
+        <h2 mat-dialog-title>Create/Update Course</h2>
+        <mat-dialog-content class="mat-typography">
+            <form [formGroup]="courseForm">
+                <div class="row">
+                    <mat-form-field class="course-input">
+                        <mat-label>Name</mat-label>
+                        <input type="text" matInput formControlName="courseName" placeholder="Ex. C#">
+                        <mat-error *ngIf="courseForm.controls.courseName.hasError('required')">
+                            Course name is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="courseForm.controls.courseName.hasError('minlength')"> </mat-error>
+                        <mat-error *ngIf="courseForm.controls.courseName.hasError('maxlength')"> </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="course-input">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                        <mat-error *ngIf="courseForm.controls.description.hasError('required')">
+                            Description is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="courseForm.controls.description.hasError('minlength')"> </mat-error>
+                        <mat-error *ngIf="courseForm.controls.description.hasError('maxlength')"> </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="course-input">
+                        <mat-label>Level</mat-label>
+                        <input type="text" matInput formControlName="courseLevel">
+                        <mat-error *ngIf="courseForm.controls.courseLevel.hasError('required')">
+                            Level is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="courseForm.controls.courseLevel.hasError('minlength')"> </mat-error>
+                        <mat-error *ngIf="courseForm.controls.courseLevel.hasError('maxlength')"> </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="course-input">
+                        <mat-label>Course duration</mat-label>
+                        <mat-date-range-input
+                          [formGroup]="courseForm"
+                          [rangePicker]="picker">
+                          <input matStartDate placeholder="Start date" formControlName="startDate">
+                          <input matEndDate placeholder="End date" formControlName="endDate">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+
+                    <mat-form-field class="course-input">
+                        <mat-label>Select trainer</mat-label>
+                        <mat-select formControlName=trainerId name="trainer" [(value)]="trainerId">
+                          <mat-option *ngFor="let element of trainersList" [value]="element.userId">
+                            {{element.userName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                    <mat-form-field class="course-input">
+                        <mat-label>Image</mat-label>
+                        <ngx-mat-file-input formControlName="courseImage" ></ngx-mat-file-input>
+                        <mat-error *ngIf="courseForm.controls.courseImage.hasError('required')">
+                            Course image is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+           
+            </form>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button [mat-dialog-close]="true" (click)="saveItem()" cdkFocusInitial
+                [disabled]="courseForm.invalid">Save</button>
+        </mat-dialog-actions>  
+    </div>
+</div>
+
