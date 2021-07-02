@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment as env} from 'src/environments/environment';
-import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
@@ -81,7 +80,10 @@ export class UserService {
     this.spinner.show();
     return this.http.put(`${env.apiRoot}/api/User/ResponseForGetCertificateRequest`, data, { responseType: 'text' }).subscribe(res => {
       this.spinner.hide();
-      this.toastr.success("Certificate sent to user successfully");
+      if(data.adminResponse == 'Approve')
+        this.toastr.success("Certificate sent to user successfully");
+      else
+        this.toastr.success("Certificate request rejected successfully");
     },err =>{
       this.spinner.hide();
       this.toastr.error("Somthing went wrong!");

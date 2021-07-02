@@ -52,6 +52,7 @@ export class GetCertificatesRequestsComponent implements OnInit {
     this.spinner.show();
     this.certificateService.getAllCertificatesRequests().subscribe((res: any) => {
       this.requestsList = res;
+      console.log(this.requestsList);
       this.dataSource = new MatTableDataSource(this.requestsList);
       this.dataSource.paginator = this.paginator;
       this.spinner.hide();
