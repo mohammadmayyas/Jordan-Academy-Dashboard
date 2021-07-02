@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env} from 'src/environments/environment';
-import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
@@ -12,7 +11,6 @@ export class CertificateService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService
   ) { }
@@ -23,10 +21,12 @@ export class CertificateService {
 
   deleteCertificate(certificateId: number){
     this.spinner.show();
-    return this.http.delete(`${env.apiRoot}/api/Certificate/${certificateId}`).subscribe(res => {
+    return this.http.delete(`${env.apiRoot}/api/Certificate/${certificateId}`, {responseType: 'text'}).subscribe(res => {
       this.spinner.hide();
+      this.toastr.success('Certificate deleted successfully');
     }, err => {
       this.spinner.hide();
+      this.toastr.error('Somthing went wrong');
     });
   }
 

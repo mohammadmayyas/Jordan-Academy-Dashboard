@@ -1,5 +1,5 @@
-<div class="container">
-    <button *hasPermission="[permission.AddCourse]" mat-button class="addCourse" (click)="openDialog()"><i class="fas fa-plus"></i></button>
+<div>
+    <button *hasPermission="[permission.AddCourse]" color="primary" mat-button class="addCourse" (click)="openDialog()"><i class="fas fa-plus"></i></button>
     <app-courses-list></app-courses-list>
 </div>
 

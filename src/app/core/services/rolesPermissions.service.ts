@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment as env} from 'src/environments/environment';
-import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +11,6 @@ export class RolesPermissionsService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
   ) { }
@@ -28,7 +25,7 @@ export class RolesPermissionsService {
 
   createRole(role: any){
     this.spinner.show();
-    return this.http.post(`${env.apiRoot}/api/Role`, role).subscribe(res =>{
+    return this.http.post(`${env.apiRoot}/api/Role`, role, { responseType: 'text'}).subscribe(res =>{
       this.spinner.hide();
       this.toastr.success("Role added successfuly");
     }, err =>{
@@ -43,7 +40,7 @@ export class RolesPermissionsService {
 
   createPermission(permission: any){
     this.spinner.show();
-    return this.http.post(`${env.apiRoot}/api/Permission`, permission).subscribe(res =>{
+    return this.http.post(`${env.apiRoot}/api/Permission`, permission, {responseType: 'text'}).subscribe(res =>{
       this.spinner.hide();
       this.toastr.success("Permission added successfuly");
     }, err =>{
@@ -78,7 +75,7 @@ export class RolesPermissionsService {
 
   updateRolePermissions(rolePermissions: any[]){
     this.spinner.show();
-    return this.http.post(`${env.apiRoot}/api/Role/UpdateRolePermissions`, rolePermissions).subscribe((res : any) => {
+    return this.http.post(`${env.apiRoot}/api/Role/UpdateRolePermissions`, rolePermissions, { responseType: 'text'}).subscribe((res : any) => {
       this.spinner.hide();
       this.toastr.success("Role permissions updated successfuly");
     }, err => {
@@ -90,7 +87,7 @@ export class RolesPermissionsService {
 
   deleteRole(roleId: number){
     this.spinner.show();
-    return this.http.delete(`${env.apiRoot}/api/Role/${roleId}`).subscribe((res : any) => {
+    return this.http.delete(`${env.apiRoot}/api/Role/${roleId}`, { responseType: 'text'}).subscribe((res : any) => {
       this.spinner.hide();
     }, err => {
       this.spinner.hide();

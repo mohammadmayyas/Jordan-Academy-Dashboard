@@ -1,6 +1,6 @@
-<div class="container" *ngIf="testimonialsList" >
+<div *ngIf="testimonialsList" >
     <mat-form-field>
-        <mat-label>Filter</mat-label>
+        <mat-label class="col-md-4">Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
       </mat-form-field>
     
@@ -43,12 +43,12 @@
         <ng-container matColumnDef="IsDisplayed">
             <th mat-header-cell *matHeaderCellDef> Displayed </th>
             <td mat-cell *matCellDef="let element ">
-                <mat-checkbox *hasPermission="[permission.EditDisplayedTestimonials]" [(ngModel)]="element.is_Displayed" (change)="updateDisplayedTestimonialsList(element.testimonialId, element.is_Displayed)"></mat-checkbox>
+                <mat-checkbox color="primary" *hasPermission="[permission.EditDisplayedTestimonials]" [(ngModel)]="element.is_Displayed" (change)="updateDisplayedTestimonialsList(element.testimonialId, element.is_Displayed)"></mat-checkbox>
             </td>
         </ng-container>
     
         <ng-container matColumnDef="Operations">
-            <th mat-header-cell *matHeaderCellDef> Operations </th>
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
             <td mat-cell *matCellDef="let element">
                 <button *hasPermission="[permission.DeleteTestimonial]" mat-button class="deleteTestimonial" (click)="deleteTestimonial(element.testimonialId)">
                     <i class="fas fa-trash-alt deleteTestimonial"></i>

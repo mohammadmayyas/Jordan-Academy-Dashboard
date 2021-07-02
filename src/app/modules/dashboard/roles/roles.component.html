@@ -1,5 +1,4 @@
-
-<div class="container">
-    <button *hasPermission="[permission.AddRole]" mat-button class="addRole" (click)="openDialog()"><i class="fas fa-plus"></i></button>
+<div>
+    <button *hasPermission="[permission.AddRole]" color="primary" mat-button class="addRole" (click)="openDialog()"><i class="fas fa-plus"></i></button>
     <app-roles-list *hasPermission="[permission.GetAllRoles]"></app-roles-list>
 </div>

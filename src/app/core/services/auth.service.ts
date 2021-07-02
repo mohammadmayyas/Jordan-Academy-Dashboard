@@ -50,20 +50,6 @@ export class AuthService {
     })
   }
 
-  register(user: any){
-    
-    this.spinner.show();
-    return this.http.post(`${env.apiRoot}/api/Account/Register`, user,{
-        responseType: 'text' }).subscribe((res: any) => {
-      this.spinner.hide();
-      this.router.navigate(['auth/login'])
-      this.toastr.success('Registerd successfully');
-    },err =>{
-      this.spinner.hide();
-      this.toastr.error(err.error)
-    })
-  }
-
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('user');

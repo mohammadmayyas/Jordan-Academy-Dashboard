@@ -1,7 +1,3 @@
-.testimonailsList{
-    width: 100%;
-}
-
 .deleteTestimonail{
     cursor: pointer;
     color: brown;
@@ -16,9 +12,18 @@
 .save-btn{
     float: right;
     margin-top: 20px;
+    font-size: 25px;
 }
 
 .deleteTestimonial{
     cursor: pointer;
     color: brown;
+}
+
+table td{
+    padding: 15px;
+}
+
+table th{
+    padding: 15px;
 }

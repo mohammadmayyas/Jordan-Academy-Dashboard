@@ -4,7 +4,7 @@ import { Permission } from "src/app/core/enums/permission";
 export const ROUTES: RouteInfo[] = [
   {
     path: "",
-    title: "Personal",
+    title: "Home",
     icon: "mdi mdi-dots-horizontal",
     class: "nav-small-cap",
     extralink: true,
@@ -84,6 +84,15 @@ export const ROUTES: RouteInfo[] = [
     permissions: [Permission.GetAllEnrollToCourseRequests],
   },
   {
+    path: "",
+    title: "Certificate",
+    icon: "mdi mdi-account",
+    class: "nav-small-cap",
+    extralink: true,
+    submenu: [],
+    permissions: ['hide'],
+  },
+  {
     path: "/dashboard/certificates",
     title: "Certificates",
     icon: "fa fa-certificate",
@@ -100,6 +109,15 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: [],
     permissions: [Permission.GetAllCertificateRequests],
+  },
+  {
+    path: "",
+    title: "Testimonial",
+    icon: "mdi mdi-account",
+    class: "nav-small-cap",
+    extralink: true,
+    submenu: [],
+    permissions: ['hide'],
   },
   {
     path: "/dashboard/testimonials",

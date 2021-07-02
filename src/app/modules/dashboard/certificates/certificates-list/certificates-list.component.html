@@ -1,5 +1,5 @@
-<div class="container" *hasPermission="[permission.GetAllCertificateApproved]">
-  <mat-form-field>
+<div *hasPermission="[permission.GetAllCertificateApproved]">
+  <mat-form-field class="col-md-4">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
@@ -14,7 +14,7 @@
 
       <ng-container matColumnDef="TraineeName">
           <th mat-header-cell *matHeaderCellDef> Trainee Name </th>
-          <td mat-cell *matCellDef="let element ">{{element.traineeName}}</td>
+          <td mat-cell *matCellDef="let element ">{{element.traineeFullName}}</td>
       </ng-container>
 
       <ng-container matColumnDef="Course">

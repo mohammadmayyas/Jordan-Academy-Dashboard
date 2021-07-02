@@ -12,7 +12,6 @@ export class CourseService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService
   ) { }
@@ -36,10 +35,12 @@ export class CourseService {
 
   deleteCourse(courseId: number){
     this.spinner.show();
-    return this.http.delete(`${env.apiRoot}/api/Course/${courseId}`).subscribe((res : any) => {
+    return this.http.delete(`${env.apiRoot}/api/Course/${courseId}`, {responseType: 'text'}).subscribe((res : any) => {
       this.spinner.hide();
+      this.toastr.success('Course deleted successfully');
     }, err => {
       this.spinner.hide();
+      this.toastr.success('Somthing went wrong..');
     });
   }
 
@@ -47,13 +48,11 @@ export class CourseService {
     this.spinner.show();
     return this.http.put(`${env.apiRoot}/api/Course/${courseId}`, course).subscribe((res : any) => {
       this.spinner.hide();
+      this.toastr.success('Course updated successfully');
     }, err => {
       this.spinner.hide();
+      this.toastr.success('Somthing went wrong..');
     });
-  }
-
-  getCourseInfo(courseId: string){
-    return this.http.post(`${env.apiRoot}/api/Course/GetCourseInfoById/${courseId}`, {});
   }
 
   getAllEnrollToCourseRequests(){
@@ -74,10 +73,11 @@ export class CourseService {
 
   updateTraineeMarks(userCourseId: number, marks: any){
     this.spinner.show();
-    return this.http.patch(`${env.apiRoot}/api/Course/UpdateTraineeMarks/${userCourseId}`, marks).subscribe((res : any) => {
+    return this.http.patch(`${env.apiRoot}/api/Course/UpdateTraineeMarks/${userCourseId}`, marks, {responseType: 'text'}).subscribe((res : any) => {
       this.spinner.hide();
     }, err => {
       this.spinner.hide();
+      this.toastr.success('Somthing went wrong..');
     });
   }
 

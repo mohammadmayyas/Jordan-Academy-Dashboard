@@ -1,14 +1,14 @@
-.rolesList{
-    margin-left: 70px;
-    width: 90%;
-}
-
 .editRolePermissions{
-    color: green;
+    color:#3f51b5;
     cursor: pointer;
 }
 
 .deleteRole{
     cursor: pointer;
     color: brown;
+}
+
+.editRole{
+    color: green;
+    cursor: pointer;
 }

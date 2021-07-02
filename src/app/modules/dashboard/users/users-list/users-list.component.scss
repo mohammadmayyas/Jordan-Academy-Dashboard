@@ -1,8 +1,3 @@
-.usersList{
-    margin-left: 70px;
-    width: 90%;
-}
-
 .userImage{
     height: 40px;
     width: 40px;
@@ -15,6 +10,17 @@
 }
 
 .editUserRoles{
-    color: green;
+    color: #3f51b5;
     cursor: pointer;
 }
+
+
+table td{
+    padding: 5px;
+}
+
+table th{
+    padding: 5px;
+ }
+
+

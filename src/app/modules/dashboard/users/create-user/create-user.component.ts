@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { Permission } from 'src/app/core/enums/permission';
 import { RolesPermissionsService } from 'src/app/core/services/rolesPermissions.service';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -13,6 +14,7 @@ import { UserService } from 'src/app/core/services/user.service';
 export class CreateUserComponent implements OnInit {
 
   rolesList: any[] = [];
+  public permission: any = Permission;
   userForm = new FormGroup({
     userName: new FormControl('', [
       Validators.required,

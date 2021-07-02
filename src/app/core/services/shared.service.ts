@@ -18,19 +18,11 @@ export class SharedService {
   private coursesListSource = new BehaviorSubject<any[]>([]);
   currentCoursesList = this.coursesListSource.asObservable();
 
-  textDirection: string= 'ltr';
-  textAlign: string= 'left';
-  float: string= 'left';
-  currentLang: string;
-
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   currentUser: BehaviorSubject<User| null> = new BehaviorSubject<User| null>(null); ;
   
-  constructor(private router: Router) {
-    this.currentLang = localStorage.getItem('currentLang')!;
-    this.onLangChange(this.currentLang);
-   }
+  constructor(private router: Router) {}
 
   onRoleIdChange(roleId: number){
     this.roleIdSource.next(roleId);
@@ -42,22 +34,6 @@ export class SharedService {
 
   onCoursesListChange(coursesList: any[]){
     this.coursesListSource.next(coursesList);
-  }
-
-  onLangChange(lang: string){
-    if(lang == 'ar')
-    { 
-      this.textDirection= 'rtl';
-      this.textAlign= 'right';
-      this.float= 'right';
-    }
-    else
-    {
-      this.textDirection= 'ltr';
-      this.textAlign= 'left';
-      this.float= 'left';
-      
-    }
   }
 
   isLoggedIn(): boolean{
@@ -73,8 +49,3 @@ export class SharedService {
     return this.router.navigateByUrl(url);
   }
 }
-
-// interface Iuser {
-//   firstNameEn: string;
-//   lastNameEn: string;
-// }

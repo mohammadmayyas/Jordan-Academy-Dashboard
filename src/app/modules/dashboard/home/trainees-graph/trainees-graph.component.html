@@ -1,15 +1,7 @@
 <div>
     <div>
       <div style="display: block">
-        <canvas baseChart
-          [datasets]="barChartData"
-          [labels]="barChartLabels"
-          [options]="barChartOptions"
-       
-          [legend]="barChartLegend"
-          [chartType]="barChartType">
-        </canvas>
+        <canvas #canvas></canvas>
       </div>
-      <button mat-button mat-raised-button color="primary" (click)="getAllCoursesWithStudents()">Update</button>
     </div>
-  </div>
+</div>

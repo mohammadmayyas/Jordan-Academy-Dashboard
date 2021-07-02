@@ -4,6 +4,7 @@ export enum Permission {
 
          GetAllUsers = 'List_AllUsers',
          GetAllTrainers = 'List_AllTrainers',
+         AddUser = 'Add_User',
          DeleteUser = 'Delete_User',
          EditUser = 'Edit_User',
          ResetPassword = 'Reset_Password',

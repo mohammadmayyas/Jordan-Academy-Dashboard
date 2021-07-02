@@ -12,6 +12,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Permission } from 'src/app/core/enums/permission';
+import { Role } from 'src/app/core/enums/role';
 
 @Component({
   selector: 'app-courses-list',
@@ -27,6 +28,7 @@ export class CoursesListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   apiRoot = env.apiRoot;
   public permission: any = Permission;
+  fliterdCoursesList: any[] = [];
   
   constructor(
     private courseService: CourseService,
@@ -40,9 +42,9 @@ export class CoursesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllTrainers2();
     this.courseService.getAllCourses().subscribe((res: any) =>{
       this.coursesList = res;
+      this.getAllTrainers();
       this.dataSource = new MatTableDataSource(this.coursesList);
       this.dataSource.paginator = this.paginator;
     }, err => {
@@ -98,11 +100,27 @@ export class CoursesListComponent implements OnInit {
     });
   }
 
-  getAllTrainers2(){
+  getAllTrainers(){
     this.userService.getAllTrainers().subscribe((res: any) => {
       this.trainersList= res;
+      this.filterCoursesForTrainers();
     }, err => {
       this.toaster.error("Somthing went wrong..");
     })
+  }
+
+  filterCoursesForTrainers(){
+    let user: any = localStorage.getItem('user');
+    if(user){
+      user = JSON.parse(user);
+      let userId= user.User_Id;
+      if(user.Roles.includes(Role.Trainer) && !user.Roles.includes(Role.Admin))
+      {
+        this.fliterdCoursesList = this.coursesList.filter((m: any) => m.trainerId == userId);
+        this.coursesList = this.fliterdCoursesList;
+        this.dataSource = new MatTableDataSource(this.coursesList);
+        this.dataSource.paginator = this.paginator;
+      }
+    }
   }
 }

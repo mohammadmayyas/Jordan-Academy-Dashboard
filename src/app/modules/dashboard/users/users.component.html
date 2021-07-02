@@ -1,2 +1,6 @@
-<button mat-button (click)="openDialog()"><i class="fas fa-plus"></i></button>
-<app-users-list *hasPermission="[permission.GetAllUsers]"></app-users-list>
+<div>
+    <button mat-button *hasPermission="[permission.AddUser]" class="addUser" color="primary" (click)="openDialog()"><i class="fas fa-plus"></i></button>
+    <app-users-list *hasPermission="[permission.GetAllUsers]"></app-users-list>
+
+</div>
+

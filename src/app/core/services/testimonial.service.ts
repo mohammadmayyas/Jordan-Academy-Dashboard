@@ -21,34 +21,26 @@ export class TestimonialService {
     return this.http.get(`${env.apiRoot}/api/Testimonial`);
   }
 
-  addTestimonial(data: any){
-    this.spinner.show();
-    return this.http.post(`${env.apiRoot}/api/Testimonial`, data).subscribe((res: any) => {
-      this.spinner.hide();
-    }, err => {
-      this.spinner.hide();
-    });
-  }
-
   updateDisplayedTestimonials(data: any[]){
     this.spinner.show();
-    return this.http.put(`${env.apiRoot}/api/Testimonial/UpdateDisplayedTestimonials`, data).subscribe((res: any) => {
+    return this.http.put(`${env.apiRoot}/api/Testimonial/UpdateDisplayedTestimonials`, data, {responseType: 'text'}).subscribe((res: any) => {
       this.spinner.hide();
+      this.toastr.success('Displayed testimonials updated successfully');
     }, err => {
       this.spinner.hide();
+      this.toastr.error('Somthing went wrong');
     });
   }
 
   deleteTestimonial(testimonialId: number){
     this.spinner.show();
-    return this.http.delete(`${env.apiRoot}/api/Testimonial/${testimonialId}`).subscribe((res: any) => {
+    return this.http.delete(`${env.apiRoot}/api/Testimonial/${testimonialId}`, {responseType: 'text'}).subscribe((res: any) => {
       this.spinner.hide();
+      this.toastr.success('Testimonials deleted successfully');
     }, err => {
       this.spinner.hide();
+      this.toastr.error('Somthing went wrong');
     });
   }
 
-  getAllAllowedTestimonials(){
-    return this.http.get(`${env.apiRoot}/api/Testimonial/GetAllAllowedTestimonials`);
-  }
 }

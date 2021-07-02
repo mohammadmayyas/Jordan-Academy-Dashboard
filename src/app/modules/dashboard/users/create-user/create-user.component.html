@@ -1,11 +1,11 @@
-<div class="container">
-    <div class="row course-dialog">
+<div class="container" *hasPermission="[permission.AddUser]">
+    <div class="row user-dialog">
         <h2 mat-dialog-title>Create new user</h2>
         <mat-dialog-content class="mat-typography">
             <form [formGroup]="userForm">
                 <div class="row">
 
-                    <mat-form-field class="course-input">
+                    <mat-form-field class="user-input">
                         <mat-label>User Name</mat-label>
                         <input type="text" matInput formControlName="userName" placeholder="Ex. John">
                         <mat-error *ngIf="userForm.controls.userName.hasError('required')">Please enter UserName </mat-error>
@@ -13,14 +13,14 @@
                         <mat-error *ngIf="userForm.controls.userName.hasError('maxlength')">"UserName"  Can't Be Above 50 CharactersLong </mat-error>
                     </mat-form-field>
                     
-                    <mat-form-field class=" col-md-7" appearance="standard">
+                    <mat-form-field class=" user-input" appearance="standard">
                         <mat-label>Email</mat-label>
                         <input matInput type="text" formControlName="email" placeholder="Ex. pat@example.com">
                         <mat-error *ngIf="userForm.controls.email.hasError('required')">Please enter email</mat-error>
                         <mat-error *ngIf="userForm.controls.email.hasError('email')">Please enter a valid email</mat-error>
                     </mat-form-field>
 
-                    <mat-form-field class="col-md-6" appearance="standard">
+                    <mat-form-field class="user-input" appearance="standard">
                         <mat-label>Phone Number</mat-label>
                         <input matInput type="tel" formControlName="phoneNumber" placeholder="+962799999999">
                         <mat-error *ngIf="userForm.controls.phoneNumber.hasError('required')">Please enter phone number</mat-error>
@@ -29,29 +29,20 @@
                         <mat-error *ngIf="userForm.controls.phoneNumber.hasError('maxlength')">PhoneNumber Can't Be Above 13 Numbers</mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="fill">
+                    <mat-form-field class="user-input" appearance="fill">
                         <mat-label>Roles</mat-label>
                         <mat-select formControlName="roles" multiple>
-                          <mat-option *ngFor="let element of rolesList" [value]="element.roleName">{{element.roleName}}</mat-option>
+                          <mat-option *ngFor="let element of rolesList" [value]="{roleName :element.roleName}">{{element.roleName}}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
-                    <mat-form-field class="col-md-6" appearance="standard">
+                    <mat-form-field class="user-input" appearance="standard">
                         <mat-label>Password</mat-label>
                         <input matInput type="password" formControlName="password">
                         <mat-error *ngIf="userForm.controls.password.hasError('required')">Please enter password</mat-error>
                         <mat-error *ngIf="userForm.controls.password.hasError('minlength')">Password Must Be At Least 8 CharactersLong</mat-error>
                         <mat-error *ngIf="userForm.controls.password.hasError('maxlength')">Password Can't Be Above 200 Characters Long</mat-error>
                     </mat-form-field>
-
-                    <!-- <mat-form-field class="course-input">
-                        <mat-label>Select role</mat-label>
-                        <mat-select formControlName="roles" name="trainer" [(value)]="roleName">
-                          <mat-option *ngFor="let element of trainersList" [value]="element.userId">
-                            {{element.userName}}
-                          </mat-option>
-                        </mat-select>
-                    </mat-form-field> -->
 
                 </div>
            
