@@ -66,7 +66,7 @@ export class UserService {
     return this.http.put(`${env.apiRoot}/api/User/ResponseForEnrollToCourseRequest`, data, { responseType: 'text' }).subscribe(res => {
       this.spinner.hide();
       if(res == "Successfully added")
-        this.toastr.success("User add to the course successfully");
+        this.toastr.success("User enrolled to the course successfully");
       else if(res == "Successfully rejected")
         this.toastr.success("User request rejected successfully");
     },err =>{

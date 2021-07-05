@@ -26,10 +26,12 @@ export class CourseService {
 
   createCourse(course: any){
     this.spinner.show();
-    return this.http.post(`${env.apiRoot}/api/Course`, course).subscribe(res => {
+    return this.http.post(`${env.apiRoot}/api/Course`, course, {responseType: 'text'}).subscribe(res => {
       this.spinner.hide();
+      this.toastr.success('Course added successfully');
     }, err => {
       this.spinner.hide();
+      this.toastr.success('Somthing went wrong..');
     });
   }
 
