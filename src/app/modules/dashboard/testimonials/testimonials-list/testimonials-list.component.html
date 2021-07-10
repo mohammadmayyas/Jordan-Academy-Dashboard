@@ -1,11 +1,11 @@
 <div *ngIf="testimonialsList" >
-    <mat-form-field>
-        <mat-label class="col-md-4">Filter</mat-label>
+    <mat-form-field class="col-md-4">
+        <mat-label >Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-      </mat-form-field>
+    </mat-form-field>
     
     <div  class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" class=" testimonailsList">
+      <table mat-table [dataSource]="dataSource" class="table-striped table-responsive-md">
       
         <ng-container matColumnDef="No">
           <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -43,7 +43,9 @@
         <ng-container matColumnDef="IsDisplayed">
             <th mat-header-cell *matHeaderCellDef> Displayed </th>
             <td mat-cell *matCellDef="let element ">
-                <mat-checkbox color="primary" *hasPermission="[permission.EditDisplayedTestimonials]" [(ngModel)]="element.is_Displayed" (change)="updateDisplayedTestimonialsList(element.testimonialId, element.is_Displayed)"></mat-checkbox>
+                <mat-checkbox color="warn" *hasPermission="[permission.EditDisplayedTestimonials]"
+                    [(ngModel)]="element.is_Displayed" (change)="updateDisplayedTestimonialsList(element.testimonialId, element.is_Displayed)">
+                </mat-checkbox>
             </td>
         </ng-container>
     

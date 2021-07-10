@@ -10,8 +10,8 @@
                         <mat-error *ngIf="courseForm.controls.courseName.hasError('required')">
                             Course name is <strong>required</strong>
                         </mat-error>
-                        <mat-error *ngIf="courseForm.controls.courseName.hasError('minlength')"> </mat-error>
-                        <mat-error *ngIf="courseForm.controls.courseName.hasError('maxlength')"> </mat-error>
+                        <mat-error *ngIf="courseForm.controls.courseName.hasError('minlength')">Course name must be at least 2 characters long</mat-error>
+                        <mat-error *ngIf="courseForm.controls.courseName.hasError('maxlength')">Course name can't be above 100 characters long</mat-error>
                     </mat-form-field>
                     <mat-form-field class="course-input">
                         <mat-label>Description</mat-label>
@@ -19,8 +19,8 @@
                         <mat-error *ngIf="courseForm.controls.description.hasError('required')">
                             Description is <strong>required</strong>
                         </mat-error>
-                        <mat-error *ngIf="courseForm.controls.description.hasError('minlength')"> </mat-error>
-                        <mat-error *ngIf="courseForm.controls.description.hasError('maxlength')"> </mat-error>
+                        <mat-error *ngIf="courseForm.controls.description.hasError('minlength')">Description must be at least 5 characters long</mat-error>
+                        <mat-error *ngIf="courseForm.controls.description.hasError('maxlength')">Description can't be above 1000 characters long</mat-error>
                     </mat-form-field>
                     <mat-form-field class="course-input">
                         <mat-label>Level</mat-label>
@@ -28,8 +28,8 @@
                         <mat-error *ngIf="courseForm.controls.courseLevel.hasError('required')">
                             Level is <strong>required</strong>
                         </mat-error>
-                        <mat-error *ngIf="courseForm.controls.courseLevel.hasError('minlength')"> </mat-error>
-                        <mat-error *ngIf="courseForm.controls.courseLevel.hasError('maxlength')"> </mat-error>
+                        <mat-error *ngIf="courseForm.controls.courseLevel.hasError('minlength')">Course level must be at least 5 characters long</mat-error>
+                        <mat-error *ngIf="courseForm.controls.courseLevel.hasError('maxlength')">Course level can't be above 50 characters long</mat-error>
                     </mat-form-field>
 
                     <mat-form-field class="course-input">
@@ -55,12 +55,22 @@
 
                     <mat-form-field class="course-input">
                         <mat-label>Image</mat-label>
-                        <ngx-mat-file-input formControlName="courseImage" ></ngx-mat-file-input>
+                        <ngx-mat-file-input accept="image/*" formControlName="courseImage" (change)="courseImageValidation()"></ngx-mat-file-input>
                         <mat-error *ngIf="courseForm.controls.courseImage.hasError('required')">
                             Course image is <strong>required</strong>
                         </mat-error>
+                        <mat-error *ngIf="courseForm.controls.courseImage.invalid">
+                            Image not valid
+                        </mat-error>
                         <mat-hint>The image will resize to 276*183</mat-hint>
                     </mat-form-field>
+
+                    <!-- <div class="avatar mx-auto position-relative" *ngIf="courseForm.controls.courseImagePath.value">
+                        <img style="width: 100px;"
+                            src="{{apiRoot}}/{{courseForm.controls.courseImagePath.value}}" class="rounded-circle">
+                        <i class="fas fa-edit" (click)="file.click()"><input type="file" (change)="updateCourseImage(file.files)" style="display:none" #file></i>
+                        
+                    </div> -->
                 </div>
            
             </form>

@@ -1,11 +1,11 @@
 <div> 
-  <mat-form-field>
+  <mat-form-field class="col-md-4">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
 
   <div  class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" class="col-md-12">
+    <table mat-table [dataSource]="dataSource" class="col-md-12 table-striped table-responsive-md">
     
       <ng-container matColumnDef="No">
         <th mat-header-cell *matHeaderCellDef> No. </th>

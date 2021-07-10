@@ -12,7 +12,6 @@ export class TestimonialService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService
   ) { }

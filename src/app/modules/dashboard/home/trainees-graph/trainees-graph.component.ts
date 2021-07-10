@@ -47,28 +47,38 @@ export class TraineesGraphComponent implements OnInit {
         this.courseName.push(element.courseName);
       }
     });
-    
+
     this.barchart = new Chart(this.chartElementRef?.nativeElement, {  
       type: 'bar',  
       data: {  
         labels: this.courseName,  
         datasets: [  
           {  
+            barPercentage: 0.5,
+            barThickness: 60,
+            maxBarThickness: 70,
+            minBarLength: 30,
             data: this.trainees,  
-            borderColor: '#3cba9f',  
+
+            borderColor: [
+              "rgba(105, 0, 132, .7)",
+              "rgba(0, 137, 132, .7)",  
+              "rgba(234, 49, 58, .7)",
+              "rgba(76, 76, 255, .7)",  
+              "rgba(0, 255, 255, .7)",  
+              "rgba(249, 144, 176, .7)",  
+              "rgba(170, 210, 237, .7)"
+            ],
+            borderWidth: 2,
             backgroundColor: [  
-              "#cc0000",  
-              "#0000FF",  
-              "#9966FF",  
-              "#4C4CFF",  
-              "#00FFFF",  
-              "#f990a7",  
-              "#aad2ed",  
-              "#FF00FF",  
-              "Blue",  
-              "Red",  
-              "Blue"  
-            ],  
+              "rgba(105, 0, 132, .2)",  
+              "rgba(0, 137, 132, .2)",  
+              "rgba(234, 49, 58, .2)",  
+              "rgba(76, 76, 255, .2)",  
+              "rgba(0, 255, 255, .2)",  
+              "rgba(249, 144, 176, .2)",  
+              "rgba(170, 210, 237, .2)"
+            ],
             fill: true  
           }  
         ]  
@@ -79,10 +89,13 @@ export class TraineesGraphComponent implements OnInit {
         },  
         scales: {  
           xAxes: [{  
-            display: true  
+            display: true
           }],  
           yAxes: [{  
-            display: true  
+            display: true,
+            ticks: {
+              beginAtZero: true
+            }  
           }],  
         }  
       }  

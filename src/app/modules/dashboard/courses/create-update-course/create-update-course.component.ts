@@ -9,6 +9,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Permission } from 'src/app/core/enums/permission';
+import { environment as env } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create-update-course',
@@ -18,6 +19,8 @@ import { Permission } from 'src/app/core/enums/permission';
 export class CreateUpdateCourseComponent implements OnInit {
 
   public permission: any = Permission;
+  public apiRoot: string = env.apiRoot;
+  public isImageNotValid: boolean = false;
   courseForm = new FormGroup({
     courseName: new FormControl('', [
       Validators.required,
@@ -36,6 +39,7 @@ export class CreateUpdateCourseComponent implements OnInit {
     trainerId: new FormControl(''),
     courseImage: new FormControl('', [
       Validators.required]),
+    courseImagePath: new FormControl(''),
   });
 
   trainersList: any[]= [];
@@ -61,7 +65,8 @@ export class CreateUpdateCourseComponent implements OnInit {
       this.courseForm.controls.startDate.setValue(this.data.startDate);
       this.courseForm.controls.endDate.setValue(this.data.endDate);
       this.courseForm.controls.trainerId.setValue(this.data.trainerId);
-      this.courseForm.controls.courseImage.setValue(this.data.courseImage);
+      this.courseForm.controls.courseImagePath.setValue(this.data.courseImagePath);
+      this.courseForm.controls.courseImage.setValue(this.data.courseImagePath);
     }
   }
 
@@ -78,7 +83,6 @@ export class CreateUpdateCourseComponent implements OnInit {
 
   saveItem(){
     const value = this.courseForm.value;
-  
     if (this.data && this.data.courseId) {
       this.dialog.close({
         ...value,
@@ -107,4 +111,10 @@ export class CreateUpdateCourseComponent implements OnInit {
     this.courseService.createCourse(formData);
     this.sharedService.reload(this.router.url);
   }
+
+  courseImageValidation(){
+    if (!(/\.(jpe?g|png|gif|bmp)$/i.test(this.courseForm.controls.courseImage.value.name)))
+      this.courseForm.controls.courseImage.setErrors({'incorrect': true});
+  }
+  
 }

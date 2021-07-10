@@ -75,7 +75,7 @@ export class CoursesListComponent implements OnInit {
       startDate : startDate,
       endDate : endDate,
       trainerId: element.trainerId,
-      courseImage: element.courseImage,
+      courseImagePath: element.courseImagePath,
     };
 
     this.dialog.open(CreateUpdateCourseComponent, {

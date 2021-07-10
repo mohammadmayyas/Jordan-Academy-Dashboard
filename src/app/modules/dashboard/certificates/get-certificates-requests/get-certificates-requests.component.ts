@@ -74,7 +74,6 @@ export class GetCertificatesRequestsComponent implements OnInit {
       let userName= user.User_Name;
       this.adminResponse = new AdminResponse(certificateId, 'Reject', userName);
       this.userService.ResponseForGetCertificateRequest(this.adminResponse);
-      this.sharedService.reload(this.router.url);
     }
   }
 
@@ -85,7 +84,6 @@ export class GetCertificatesRequestsComponent implements OnInit {
       let userName= user.User_Name;
       this.adminResponse = new AdminResponse(certificateId, 'Approve', userName);
       this.userService.ResponseForGetCertificateRequest(this.adminResponse);
-      this.sharedService.reload(this.router.url);
     }
   }
 }

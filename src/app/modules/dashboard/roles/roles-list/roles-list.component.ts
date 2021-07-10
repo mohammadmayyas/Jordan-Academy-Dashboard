@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/core/services/shared.service';
@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CreateUpdateRoleComponent } from '../create-update-role/create-update-role.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Permission } from 'src/app/core/enums/permission';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-roles-list',
@@ -20,6 +21,7 @@ export class RolesListComponent implements OnInit {
   @Input() rolesList: any[] = [];
   displayedColumns: string[] = ['No', 'Role', 'Permissions', 'Operations'];
   dataSource = new MatTableDataSource();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   permissionsIds: any[] = [];
   public permission: any = Permission;
   
@@ -38,6 +40,7 @@ export class RolesListComponent implements OnInit {
     this.rolesPermissionsService.getAllRolesWithPermissions().subscribe((res: any) => {
       this.rolesList = res;
       this.dataSource = new MatTableDataSource(this.rolesList);
+      this.dataSource.paginator = this.paginator;
       this.spinner.hide();
     }, err => {
       this.spinner.hide();

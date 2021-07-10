@@ -10,7 +10,7 @@
                         <input type="text" matInput formControlName="userName" placeholder="Ex. John">
                         <mat-error *ngIf="userForm.controls.userName.hasError('required')">Please enter UserName </mat-error>
                         <mat-error *ngIf="userForm.controls.userName.hasError('minlength')">UserName  Must Be At Least 5 CharactersLong </mat-error>
-                        <mat-error *ngIf="userForm.controls.userName.hasError('maxlength')">"UserName"  Can't Be Above 50 CharactersLong </mat-error>
+                        <mat-error *ngIf="userForm.controls.userName.hasError('maxlength')">UserName  Can't Be Above 50 CharactersLong </mat-error>
                     </mat-form-field>
                     
                     <mat-form-field class=" user-input" appearance="standard">

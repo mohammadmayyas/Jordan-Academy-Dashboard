@@ -1,16 +1,16 @@
 <div *ngIf="requestsList">
-  <div class="comtainer" *hasPermission="[permission.GetAllCertificateRequests]">
-    <mat-form-field>
+  <div *hasPermission="[permission.GetAllCertificateRequests]">
+    <mat-form-field class="col-md-4">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
     </mat-form-field>
   
     <div  class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" class=" requestsList">
+      <table mat-table [dataSource]="dataSource" class="col-md-12 table-striped table-responsive-md">
       
         <ng-container matColumnDef="No">
           <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element">{{No + 1}}</td>
+          <td mat-cell *matCellDef="let element">{{element.certificateId}}</td>
         </ng-container>
   
         <ng-container matColumnDef="TraineeName">

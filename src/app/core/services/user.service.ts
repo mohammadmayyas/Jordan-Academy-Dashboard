@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment as env} from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { SharedService } from './shared.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,9 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private sharedService: SharedService,
+    private router: Router
   ) { }
   
   getAllUsers(){
@@ -84,6 +88,7 @@ export class UserService {
         this.toastr.success("Certificate sent to user successfully");
       else
         this.toastr.success("Certificate request rejected successfully");
+      this.sharedService.reload(this.router.url);
     },err =>{
       this.spinner.hide();
       this.toastr.error("Somthing went wrong!");
