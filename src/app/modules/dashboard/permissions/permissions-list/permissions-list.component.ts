@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
-import { SharedService } from 'src/app/core/services/shared.service';
 import { RolesPermissionsService } from 'src/app/core/services/rolesPermissions.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateUpdatePermissionComponent } from '../create-update-permission/create-update-permission.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Permission } from 'src/app/core/enums/permission';
+import { ConfirmationDialogComponent, ConfirmationDialogModel } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-permissions-list',
@@ -26,8 +25,6 @@ export class PermissionsListComponent implements OnInit {
   constructor(
     private rolesPermissionsService: RolesPermissionsService,
     private toaster: ToastrService,
-    private sharedService: SharedService,
-    private router: Router,
     private dialog: MatDialog,
     private spinner: NgxSpinnerService,
   ) { }
@@ -52,7 +49,6 @@ export class PermissionsListComponent implements OnInit {
 
   deletePermission(permissionId: number){
     this.rolesPermissionsService.deletePermission(permissionId);
-    this.sharedService.reload(this.router.url);
   }
 
   updatePermission(element: any){
@@ -68,7 +64,22 @@ export class PermissionsListComponent implements OnInit {
         this.rolesPermissionsService.updatePermission(result.permissionId, result);
       }
     });
-    this.sharedService.reload(this.router.url);
+  }
+
+  confirmDialog(permissionId: number): void {
+    const message = `Are you sure you want to do this permission ?`;
+
+    const dialogData = new ConfirmationDialogModel(message);
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      maxWidth: "500px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(isConfirmed => {
+        if(isConfirmed)
+          this.deletePermission(permissionId);
+    });
   }
 
 }

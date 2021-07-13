@@ -7,7 +7,7 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" class="col-md-12 table-striped table-responsive-md">
   
-      <ng-container matColumnDef="No">
+      <ng-container matColumnDef="No" style="margin-left: 10px;">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
       </ng-container>
@@ -76,7 +76,7 @@
             <a *hasPermission="[permission.EditUserRoles]" mat-button (click)= "openUpdateUserRolesDialog(element.userId)">
               <i class="fas fa-edit editUserRoles"></i>
             </a>
-            <a *hasPermission="[permission.DeleteUser]" mat-button (click)="deleteUser(element.userId)">
+            <a *hasPermission="[permission.DeleteUser]" mat-button (click)="confirmDialog(element.userId)">
               <i class="fas fa-trash-alt deleteUser"></i
             ></a>
             

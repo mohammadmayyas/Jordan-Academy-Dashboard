@@ -8,6 +8,8 @@ import { TestimonialService } from 'src/app/core/services/testimonial.service';
 import { environment as env } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Permission } from 'src/app/core/enums/permission';
+import { ConfirmationDialogComponent, ConfirmationDialogModel } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export class Testimonial{
   testimonialId: number;
@@ -38,7 +40,8 @@ export class TestimonialsListComponent implements OnInit {
     private sharedService: SharedService,
     private router: Router,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -79,6 +82,22 @@ export class TestimonialsListComponent implements OnInit {
   deleteTestimonial(testimonialId: number){
     this.testimonialService.deleteTestimonial(testimonialId);
     this.sharedService.reload(this.router.url);
+  }
+
+  confirmDialog(testimonialId: number): void {
+    const message = `Are you sure you want to do this testimonial ?`;
+
+    const dialogData = new ConfirmationDialogModel(message);
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      maxWidth: "500px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(isConfirmed => {
+        if(isConfirmed)
+          this.deleteTestimonial(testimonialId);
+    });
   }
 
 }

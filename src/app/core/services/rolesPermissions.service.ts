@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment as env} from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { SharedService } from './shared.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,8 @@ export class RolesPermissionsService {
     private http: HttpClient,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
+    private sharedService: SharedService,
+    private router: Router
   ) { }
 
   getAllRoles(){
@@ -28,6 +32,7 @@ export class RolesPermissionsService {
     return this.http.post(`${env.apiRoot}/api/Role`, role, { responseType: 'text'}).subscribe(res =>{
       this.spinner.hide();
       this.toastr.success("Role added successfuly");
+      this.sharedService.reload(this.router.url);
     }, err =>{
       this.spinner.hide();
       this.toastr.error("Somthing went wrong..");
@@ -43,6 +48,7 @@ export class RolesPermissionsService {
     return this.http.post(`${env.apiRoot}/api/Permission`, permission, {responseType: 'text'}).subscribe(res =>{
       this.spinner.hide();
       this.toastr.success("Permission added successfuly");
+      this.sharedService.reload(this.router.url);
     }, err =>{
       this.spinner.hide();
       this.toastr.error(err.error);
@@ -57,6 +63,7 @@ export class RolesPermissionsService {
     this.spinner.show();
     return this.http.delete(`${env.apiRoot}/api/Permission/${permissionId}`).subscribe((res : any) => {
       this.spinner.hide();
+      this.sharedService.reload(this.router.url);
     }, err => {
       this.spinner.hide();
     });
@@ -67,6 +74,7 @@ export class RolesPermissionsService {
     return this.http.put(`${env.apiRoot}/api/Permission/${permissionId}`, permission).subscribe((res : any) => {
       this.spinner.hide();
       this.toastr.success("Permission updated successfuly");
+      this.sharedService.reload(this.router.url);
     }, err => {
       this.spinner.hide();
       this.toastr.error(err.error);
@@ -89,6 +97,7 @@ export class RolesPermissionsService {
     this.spinner.show();
     return this.http.delete(`${env.apiRoot}/api/Role/${roleId}`, { responseType: 'text'}).subscribe((res : any) => {
       this.spinner.hide();
+      this.sharedService.reload(this.router.url);
     }, err => {
       this.spinner.hide();
     });
@@ -99,6 +108,7 @@ export class RolesPermissionsService {
     return this.http.put(`${env.apiRoot}/api/Role/${roleId}`, role).subscribe((res : any) => {
       this.spinner.hide();
       this.toastr.success("Role updated successfuly");
+      this.sharedService.reload(this.router.url);
     }, err => {
       this.spinner.hide();
       this.toastr.error("Somthing went wrong..");

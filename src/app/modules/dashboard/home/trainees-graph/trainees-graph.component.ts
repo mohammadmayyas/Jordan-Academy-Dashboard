@@ -54,6 +54,7 @@ export class TraineesGraphComponent implements OnInit {
         labels: this.courseName,  
         datasets: [  
           {  
+            label: '# of Trainees',
             barPercentage: 0.5,
             barThickness: 60,
             maxBarThickness: 70,
@@ -94,7 +95,8 @@ export class TraineesGraphComponent implements OnInit {
           yAxes: [{  
             display: true,
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
+              stepSize: 1
             }  
           }],  
         }  

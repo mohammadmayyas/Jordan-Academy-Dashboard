@@ -10,6 +10,7 @@ import { UserRolesComponent } from '../user-roles/user-roles.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatPaginator } from '@angular/material/paginator';
 import { Permission } from 'src/app/core/enums/permission';
+import { ConfirmationDialogComponent, ConfirmationDialogModel } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-users-list',
@@ -49,7 +50,6 @@ export class UsersListComponent implements OnInit {
 
   deleteUser(userId: number){
     this.userService.deleteUser(userId);
-    this.sharedService.reload(this.router.url);
   }
 
  applyFilter(event: Event) {
@@ -62,5 +62,20 @@ export class UsersListComponent implements OnInit {
     this.sharedService.onUserIdChange(userId);
   }
   
+  confirmDialog(userId: number): void {
+    const message = `Are you sure you want to do this user ?`;
+
+    const dialogData = new ConfirmationDialogModel(message);
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      maxWidth: "500px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(isConfirmed => {
+        if(isConfirmed)
+          this.deleteUser(userId);
+    });
+  }
 
 }

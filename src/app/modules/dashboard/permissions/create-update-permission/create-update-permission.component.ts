@@ -1,9 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RolesPermissionsService } from 'src/app/core/services/rolesPermissions.service';
-import { SharedService } from 'src/app/core/services/shared.service';
-import { Router } from '@angular/router';
+
 import { Permission } from 'src/app/core/enums/permission';
 
 @Component({
@@ -24,8 +23,6 @@ export class CreateUpdatePermissionComponent implements OnInit {
     private rolesPermissionsService: RolesPermissionsService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialogRef<CreateUpdatePermissionComponent>,
-    private sharedService: SharedService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -51,7 +48,6 @@ export class CreateUpdatePermissionComponent implements OnInit {
   
   createPermission(permission: any){
     this.rolesPermissionsService.createPermission(permission);
-    this.sharedService.reload(this.router.url);
   }
 
 }

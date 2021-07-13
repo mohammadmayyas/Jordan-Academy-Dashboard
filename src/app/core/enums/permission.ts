@@ -29,6 +29,7 @@ export enum Permission {
          DeletePermission = 'Delete_Permission',
 
          AddCourse = 'Add_Course',
+         GetAllCourses = 'List_AllCourses',
          EditCourse = 'Edit_Course',
          DeleteCourse = 'Delete_Course',
          GetAllPendingEnrollRequests = 'List_AllPendingEnrollRequests',

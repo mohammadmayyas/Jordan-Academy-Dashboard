@@ -26,7 +26,7 @@
           <th mat-header-cell *matHeaderCellDef> </th>
           <td mat-cell *matCellDef="let element">
             <button *hasPermission="[permission.EditRolePermissions]" mat-button (click)= "openUpdateRolePermissionsDialog(element.roleId)"><i class="fas fa-edit editRolePermissions"></i></button>
-            <button *hasPermission="[permission.DeleteRole]" mat-button (click)= "deleteRole(element.roleId)"><i class="fas fa-trash-alt deleteRole"></i></button>
+            <button *hasPermission="[permission.DeleteRole]" mat-button (click)= "confirmDialog(element.roleId)"><i class="fas fa-trash-alt deleteRole"></i></button>
             <button *hasPermission="[permission.EditRole]" mat-button (click)="updateRole(element)"><i class="fas fa-edit editRole"></i></button> 
           </td>
         </ng-container>

@@ -3,16 +3,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { CourseService } from 'src/app/core/services/course.service';
-import { SharedService } from 'src/app/core/services/shared.service';
 import { CreateUpdateCourseComponent } from '../create-update-course/create-update-course.component';
 import { environment as env } from 'src/environments/environment';
 import { UserService } from 'src/app/core/services/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Permission } from 'src/app/core/enums/permission';
 import { Role } from 'src/app/core/enums/role';
+import { ConfirmationDialogComponent, ConfirmationDialogModel } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-courses-list',
@@ -32,13 +30,10 @@ export class CoursesListComponent implements OnInit {
   
   constructor(
     private courseService: CourseService,
-    private sharedService: SharedService,
-    private router: Router,
     private dialog: MatDialog,
     public datepipe: DatePipe,
     private userService: UserService,
     private toaster: ToastrService,
-    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -58,8 +53,7 @@ export class CoursesListComponent implements OnInit {
   }
 
   deleteCourse(courseId: number){
-    this.courseService.deleteCourse(courseId);
-    this.sharedService.reload(this.router.url); 
+    this.courseService.deleteCourse(courseId); 
   }
 
   updateCourse(element: any){
@@ -95,7 +89,6 @@ export class CoursesListComponent implements OnInit {
         formData.append('trainerId', result.trainerId);
         formData.append('courseImage', result.courseImage);
         this.courseService.updateCourse(result.courseId, formData);
-        this.sharedService.reload(this.router.url);
       }
     });
   }
@@ -122,5 +115,21 @@ export class CoursesListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       }
     }
+  }
+
+  confirmDialog(courseId: number): void {
+    const message = `Are you sure you want to do this course ?`;
+
+    const dialogData = new ConfirmationDialogModel(message);
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      maxWidth: "500px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(isConfirmed => {
+        if(isConfirmed)
+          this.deleteCourse(courseId);
+    });
   }
 }

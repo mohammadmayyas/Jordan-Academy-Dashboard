@@ -19,8 +19,8 @@
 
         <ng-container matColumnDef="Operations">
           <th mat-header-cell *matHeaderCellDef> </th>
-          <td mat-cell *matCellDef="let element" >
-            <button *hasPermission="[permission.DeletePermission]" mat-button (click)="deletePermission(element.permissionId)"><i  class="fas fa-trash-alt deletePermission"></i></button> 
+          <td mat-cell *matCellDef="let element" style="text-align: right;">
+            <button *hasPermission="[permission.DeletePermission]" mat-button (click)="confirmDialog(element.permissionId)"><i  class="fas fa-trash-alt deletePermission"></i></button> 
             <button *hasPermission="[permission.EditPermission]" mat-button (click)="updatePermission(element)"><i class="fas fa-edit editPermission"></i></button> 
           </td>
         </ng-container>

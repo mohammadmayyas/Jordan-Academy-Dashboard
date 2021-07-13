@@ -65,19 +65,13 @@
                         <mat-hint>The image will resize to 276*183</mat-hint>
                     </mat-form-field>
 
-                    <!-- <div class="avatar mx-auto position-relative" *ngIf="courseForm.controls.courseImagePath.value">
-                        <img style="width: 100px;"
-                            src="{{apiRoot}}/{{courseForm.controls.courseImagePath.value}}" class="rounded-circle">
-                        <i class="fas fa-edit" (click)="file.click()"><input type="file" (change)="updateCourseImage(file.files)" style="display:none" #file></i>
-                        
-                    </div> -->
                 </div>
            
             </form>
         </mat-dialog-content>
         <mat-dialog-actions align="end">
-            <button mat-button mat-dialog-close>Cancel</button>
-            <button mat-button [mat-dialog-close]="true" (click)="saveItem()" cdkFocusInitial
+            <button mat-raised-button mat-dialog-close>Cancel</button>
+            <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="saveItem()" cdkFocusInitial
                 [disabled]="courseForm.invalid">Save</button>
         </mat-dialog-actions>  
     </div>

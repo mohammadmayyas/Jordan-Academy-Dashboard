@@ -2,8 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from 'src/app/core/services/course.service';
-import { Router } from '@angular/router';
-import { SharedService } from 'src/app/core/services/shared.service';
 import { DatePipe } from '@angular/common';
 import { UserService } from 'src/app/core/services/user.service';
 import { ToastrService } from 'ngx-toastr';
@@ -48,8 +46,6 @@ export class CreateUpdateCourseComponent implements OnInit {
     private courseService: CourseService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialogRef<CreateUpdateCourseComponent>,
-    private router: Router,
-    private sharedService: SharedService,
     public datepipe: DatePipe,
     private userService: UserService,
     private toaster: ToastrService,
@@ -109,7 +105,6 @@ export class CreateUpdateCourseComponent implements OnInit {
     formData.append('courseImage', this.courseForm.controls.courseImage.value);
 
     this.courseService.createCourse(formData);
-    this.sharedService.reload(this.router.url);
   }
 
   courseImageValidation(){

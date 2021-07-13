@@ -10,6 +10,7 @@ import { CreateUpdateRoleComponent } from '../create-update-role/create-update-r
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Permission } from 'src/app/core/enums/permission';
 import { MatPaginator } from '@angular/material/paginator';
+import { ConfirmationDialogComponent, ConfirmationDialogModel } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-roles-list',
@@ -61,7 +62,6 @@ export class RolesListComponent implements OnInit {
 
   deleteRole(roleId: number){
     this.rolesPermissionsService.deleteRole(roleId);
-    this.sharedService.reload(this.router.url);
   }
 
   updateRole(element: any){
@@ -76,6 +76,22 @@ export class RolesListComponent implements OnInit {
       if (result && result.roleId) {
         this.rolesPermissionsService.updateRole(result.roleId, result);
       }
+    });
+  }
+
+  confirmDialog(roleId: number): void {
+    const message = `Are you sure you want to do this role ?`;
+
+    const dialogData = new ConfirmationDialogModel(message);
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      maxWidth: "500px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(isConfirmed => {
+        if(isConfirmed)
+          this.deleteRole(roleId);
     });
   }
 

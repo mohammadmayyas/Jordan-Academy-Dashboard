@@ -30,6 +30,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { SharedModule } from './shared/modules/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { TokenInterceptor } from './core/interceptors/token';
+import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -45,7 +46,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FullComponent,
     NavigationComponent,
     SidebarComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,

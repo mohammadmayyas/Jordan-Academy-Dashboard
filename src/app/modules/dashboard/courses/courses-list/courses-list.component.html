@@ -45,8 +45,8 @@
 
         <ng-container matColumnDef="Operations">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <button *hasPermission="[permission.DeleteCourse]" mat-button class="deleteButton" (click)="deleteCourse(element.courseId)"><i class="fas fa-trash-alt deleteCourse"></i></button> 
+          <td mat-cell *matCellDef="let element" style="text-align: right;">
+            <button *hasPermission="[permission.DeleteCourse]" mat-button class="deleteButton" (click)="confirmDialog(element.courseId)"><i class="fas fa-trash-alt deleteCourse"></i></button> 
             <button *hasPermission="[permission.EditCourse]" mat-button (click)="updateCourse(element)"><i class="fas fa-edit editCourse"></i></button> 
             <button *hasPermission="[permission.GetTraineesAcademyInfo]" mat-button [routerLink]="['../course-details', element.courseId]"><i class="fas fa-info-circle"></i></button> 
           </td>

@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { CertificateService } from 'src/app/core/services/certificate.service';
-import { SharedService } from 'src/app/core/services/shared.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Permission } from 'src/app/core/enums/permission';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent, ConfirmationDialogModel } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-certificates-list',
@@ -22,11 +22,10 @@ export class CertificatesListComponent implements OnInit {
   public permission: any = Permission;
   
   constructor(
-    private sharedService: SharedService,
-    private router: Router,
     private certificateService: CertificateService,
     private spinner: NgxSpinnerService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +52,22 @@ export class CertificatesListComponent implements OnInit {
 
   deleteCertificate(certificateId: number){
     this.certificateService.deleteCertificate(certificateId);
-    this.sharedService.reload(this.router.url);
+  }
+
+  confirmDialog(certificateId: number): void {
+    const message = `Are you sure you want to do this certificate ?`;
+
+    const dialogData = new ConfirmationDialogModel(message);
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      maxWidth: "500px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(isConfirmed => {
+        if(isConfirmed)
+          this.deleteCertificate(certificateId);
+    });
   }
 
 }

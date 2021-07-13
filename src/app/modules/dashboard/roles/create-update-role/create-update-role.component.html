@@ -16,8 +16,8 @@
         </div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button [mat-dialog-close]="true" (click)="saveItem()" cdkFocusInitial
+        <button mat-raised-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="saveItem()" cdkFocusInitial
             [disabled]="roleForm.invalid">Save</button>
     </mat-dialog-actions>
 </div>
