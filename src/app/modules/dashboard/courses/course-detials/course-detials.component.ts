@@ -40,7 +40,6 @@ export class CourseDetialsComponent implements OnInit{
   ngOnInit(): void {
     this.courseId = this.route.snapshot.paramMap.get('courseId')!;
     this.getTraineesAcademyInfoByCourseId(this.courseId);
-    console.log(this.course);
   }
   
   getTraineesAcademyInfoByCourseId(courseId: string){
@@ -50,6 +49,7 @@ export class CourseDetialsComponent implements OnInit{
       this.spinner.hide();
       this.dataSource = new MatTableDataSource(this.course);
       this.dataSource.paginator = this.paginator;
+      console.log(this.course);
     }, err => {
       this.spinner.hide();
       this.toaster.error("Somthing went wrong..");

@@ -9,7 +9,7 @@
   
       <ng-container matColumnDef="No" style="margin-left: 10px;">
         <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+        <td mat-cell *matCellDef="let element; let i = index">{{i + 1}} </td>
       </ng-container>
     
       <ng-container matColumnDef="UserName">

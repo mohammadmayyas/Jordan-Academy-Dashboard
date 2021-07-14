@@ -72,7 +72,7 @@ export const ROUTES: RouteInfo[] = [
     class: "",
     extralink: false,
     submenu: [],
-    permissions: [],
+    permissions: [Permission.GetAllCourses],
   },
   {
     path: "/dashboard/enrolls",

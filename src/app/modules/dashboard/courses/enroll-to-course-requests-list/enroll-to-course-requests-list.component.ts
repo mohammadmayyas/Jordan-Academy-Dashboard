@@ -44,6 +44,7 @@ export class EnrollToCourseRequestsListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.No += 1;
     this.spinner.show();
     this.courseService.getAllEnrollToCourseRequests()
     .subscribe((res: any) => {
