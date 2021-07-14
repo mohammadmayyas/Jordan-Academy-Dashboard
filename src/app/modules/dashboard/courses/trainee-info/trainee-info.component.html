@@ -1,0 +1,18 @@
+<div class="container" *ngIf="trainee">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>User name :  <span class="black">{{trainee.userName}}</span></h1>
+            <h1>Full name :  <span class="black">{{trainee.firstNameEn}} {{trainee.lastNameEn}}</span></h1>
+            <h1>Email :  <span class="black">{{trainee.email}}</span></h1>
+            <h1>Phone number :  <span class="black">{{trainee.phoneNumber}}</span></h1>
+            <h1>Date of birth :  <span class="black">{{trainee.dateOfBirth | date}}</span></h1>
+            <h1>City :  <span class="black">{{trainee.city}}</span></h1>
+            <h1>Address :  <span class="black">{{trainee.address}}</span></h1>
+            <h1>Gender :  <span class="black">{{trainee.gender}}</span></h1>
+        </div>
+        <div class="col-md-6">
+            <img class="image" src="{{apiRoot}}/{{trainee.userImagePath}}">
+        </div>
+    </div>
+    
+</div>

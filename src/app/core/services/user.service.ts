@@ -36,6 +36,10 @@ export class UserService {
     });
   }
 
+  getAllUserInfoById(userId: string){
+    return this.http.get(`${env.apiRoot}/api/User/UserInfo/${userId}`);
+  }
+
   getFullUserNameById(userId: number){
     return this.http.get(`${env.apiRoot}/api/User/GetFullUserNameById/${userId}`);
   }

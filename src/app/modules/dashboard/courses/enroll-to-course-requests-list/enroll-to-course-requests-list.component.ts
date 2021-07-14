@@ -29,9 +29,8 @@ export class EnrollToCourseRequestsListComponent implements OnInit {
 
   public permission: any = Permission;
   requestsList: any[] = [];
-  No: number = 0;
   adminResponse: any;
-  displayedColumns: string[] = ['No', 'UserName', 'Course', 'Operations'];
+  displayedColumns: string[] = ['No', 'UserName', 'Course', 'TraineeInfo', 'Operations'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
@@ -44,13 +43,13 @@ export class EnrollToCourseRequestsListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.No += 1;
     this.spinner.show();
     this.courseService.getAllEnrollToCourseRequests()
     .subscribe((res: any) => {
       this.requestsList = res;
       this.dataSource = new MatTableDataSource(this.requestsList);
       this.dataSource.paginator = this.paginator;
+      console.log(this.requestsList);
       this.spinner.hide();
     }, err => {
       this.spinner.hide();

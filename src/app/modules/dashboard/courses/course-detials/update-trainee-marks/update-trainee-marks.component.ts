@@ -1,10 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Permission } from 'src/app/core/enums/permission';
-import { CourseService } from 'src/app/core/services/course.service';
-import { SharedService } from 'src/app/core/services/shared.service';
+
 
 @Component({
   selector: 'app-update-trainee-marks',

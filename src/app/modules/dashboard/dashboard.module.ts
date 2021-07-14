@@ -29,6 +29,7 @@ import { GetCheckedRolesPipe } from 'src/app/core/pipes/get-checked-roles.pipe';
 import { HomeComponent } from './home/home.component';
 import { TraineesGraphComponent } from './home/trainees-graph/trainees-graph.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
+import { TraineeInfoComponent } from './courses/trainee-info/trainee-info.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { CreateUserComponent } from './users/create-user/create-user.component';
     HomeComponent,
     TraineesGraphComponent,
     CreateUserComponent,
+    TraineeInfoComponent,
     
   ],
   imports: [

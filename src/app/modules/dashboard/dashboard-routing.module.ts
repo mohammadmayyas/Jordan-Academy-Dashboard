@@ -14,6 +14,7 @@ import { GetCertificatesRequestsComponent } from './certificates/get-certificate
 import { CourseDetialsComponent } from './courses/course-detials/course-detials.component';
 import { CoursesComponent } from './courses/courses.component';
 import { EnrollToCourseRequestsListComponent } from './courses/enroll-to-course-requests-list/enroll-to-course-requests-list.component';
+import { TraineeInfoComponent } from './courses/trainee-info/trainee-info.component';
 import { HomeComponent } from './home/home.component';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { RolesComponent } from './roles/roles.component';
@@ -48,6 +49,10 @@ const routes: Routes = [
     path: 'course-details/:courseId',
     component: CourseDetialsComponent,
     canActivate: [CanActivateCoursesGuard]
+  },
+  {
+    path: 'trainee-info/:traineeId',
+    component: TraineeInfoComponent
   },
   {
     path: 'enrolls',
