@@ -59,7 +59,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgbModule,
     SharedModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy' })
+    RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy', scrollPositionRestoration: 'enabled' })
   ],
   providers: [
     DatePipe,
